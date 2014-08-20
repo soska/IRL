@@ -10,13 +10,12 @@ class Theme{
 
 	function __construct(){
 
-		// $this->config = require_once( IRL_INCLUDES . "/config.php" );
-
 		add_theme_support( 'post-thumbnails' );
-		add_theme_support( 'woo-commerce' );
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'init', array( $this, 'init' ) );
+    add_action( 'widgets_init', array($this, 'widgets_init' ));
+
 	}
 
 	static function start(){
@@ -35,8 +34,7 @@ class Theme{
 	}
 
 	function enqueue_scripts(){
-		// wp_enqueue_style( 'foundationcss', IRL_FOUNDATION_URL . "/css/foundation.css" );
-		wp_enqueue_script( 'foundationjs', IRL_FOUNDATION_URL . "/js/foundation.min.js", ['jquery'] );
+
 	}
 
 	function init(){
@@ -48,6 +46,35 @@ class Theme{
 
 	}
 
+  function widgets_init(){
+
+    register_sidebar( array(
+      'name' => 'Home - Footer A',
+      'id' => 'home-footer--A',
+      'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+      'after_widget' => "</aside>",
+      'before_title' => '<h3 class="widget-title">',
+      'after_title' => '</h3>',
+    ) );
+
+    register_sidebar( array(
+      'name' => 'Home - Footer B',
+      'id' => 'home-footer--B',
+      'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+      'after_widget' => "</aside>",
+      'before_title' => '<h3 class="widget-title">',
+      'after_title' => '</h3>',
+    ) );
+
+    register_sidebar( array(
+      'name' => 'Home - Footer C',
+      'id' => 'home-footer--C',
+      'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+      'after_widget' => "</aside>",
+      'before_title' => '<h3 class="widget-title">',
+      'after_title' => '</h3>',
+    ) );
+  }
 
 	static function render_view( $name, $vars = array() ){
 		extract( $vars );
@@ -73,23 +100,6 @@ class Theme{
 
 	}
 
-	static function nav(){
-		if (is_single()) {
-
-			$args = array(
-				'prelabel' => '&larr; Posts más nuevos',
-				'nxtlabel' => 'Posts más viejos &rarr;',
-			);
-			echo bootstrap_posts_nav( $args );
-		}else{
-			$args = array(
-				'prelabel' => '&larr; Posts más nuevos',
-				'nxtlabel' => 'Posts más viejos &rarr;',
-			);
-			echo bootstrap_archive_nav( $args );
-		}
-		keyboard_nav_js();
-	}
 
 
 }
