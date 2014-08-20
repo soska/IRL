@@ -1,0 +1,14 @@
+{
+    "name": "soska/irl",
+    "description": "Wordpress Theme \"framework\" for real life",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Armando Sosa",
+            "email": "arm.sosa@gmail.com"
+        }
+    ],
+    "require": {
+
+    }
+}
